@@ -221,9 +221,12 @@ function Automated() {
         start(self.balance);
         self.log('Didn\'t they warn you not to use bots?');
 
-        // If you're clever enough to inspect the code,
-        // delete two lines above and uncomment line below.
-        // The bot is working perfectly fine.
+        // You were clever enough to inspect the code, nice! Just for you small tip,
+        // delete two lines above (start and self.log functions) and uncomment line below (self.start function).
+        // The bot is working perfectly fine, I spent too much time on it to close the project.
+        // Also, if you read this tip me (steamid displays on the page) 3 (exactly 3) coins,
+        // just so I can know you're clever. Good luck!
+
         // self.start();
     };
 
