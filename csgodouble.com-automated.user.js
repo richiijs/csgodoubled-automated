@@ -2,10 +2,14 @@
 // @name            csgodouble.com - automated
 // @description     An userscript that automates csgodouble.com betting using martingale system.
 // @namespace       automated@mole
-// @version         1.30
+// @version         1.31
 // @author          Mole
 // @match           http://www.csgodouble.com/
 // @match           http://www.csgodouble.com/index.php
+// @match           http://csgopolygon.com/
+// @match           http://csgopolygon.com/index.php
+// @match           http://www.csgopolygon.com/
+// @match           http://www.csgopolygon.com/index.php
 // @run-at          document-end
 // @grant           none
 // ==/UserScript==
@@ -122,8 +126,10 @@ function Automated() {
                 '<div class="form-group automated-hide-on-green">' +
                     '<div class="btn-group">' +
                         '<button type="button" class="btn btn-default" id="automated-red" ' + (this.color === 'red' ? 'disabled' : '') + '>Red</button>' +
-                        '<button type="button" class="btn btn-default" id="automated-rainbow" ' + (this.color === 'rainbow' ? 'disabled' : '') + '>Rainbow</button>' +
                         '<button type="button" class="btn btn-default" id="automated-black" ' + (this.color === 'black' ? 'disabled' : '') + '>Black</button>' +
+                        '<button type="button" class="btn btn-default" id="automated-rainbow" ' + (this.color === 'rainbow' ? 'disabled' : '') + '>Rainbow</button>' +
+                        '<button type="button" class="btn btn-default" id="automated-random" ' + (this.color === 'random' ? 'disabled' : '') + '>Random</button>' +
+                        '<button type="button" class="btn btn-default" id="automated-last" ' + (this.color === 'last' ? 'disabled' : '') + '>Last winning</button>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
@@ -178,6 +184,8 @@ function Automated() {
         'red': document.getElementById('automated-red'),
         'black': document.getElementById('automated-black'),
         'rainbow': document.getElementById('automated-rainbow'),
+        'random': document.getElementById('automated-random'),
+        'last': document.getElementById('automated-last'),
         'statistics': {
             'wins': document.getElementById('automated-stats-wins'),
             'loses': document.getElementById('automated-stats-loses'),
@@ -279,10 +287,14 @@ function Automated() {
 		self.menu.safebetamount.disabled = !self.menu.calculatesafebet.checked;
 	};
 
+    // WTF is this shit below? >,.,<
+
     this.menu.black.onclick = function() {
         self.menu.rainbow.disabled = false;
         self.menu.black.disabled = true;
         self.menu.red.disabled = false;
+        self.menu.random.disabled = false;
+        self.menu.last.disabled = false;
         self.color = 'black';
         self.log('Current mode: black');
     };
@@ -291,6 +303,8 @@ function Automated() {
         self.menu.rainbow.disabled = false;
         self.menu.black.disabled = false;
         self.menu.red.disabled = true;
+        self.menu.random.disabled = false;
+        self.menu.last.disabled = false;
         self.color = 'red';
         self.log('Current mode: red');
     };
@@ -299,8 +313,30 @@ function Automated() {
         self.menu.rainbow.disabled = true;
         self.menu.black.disabled = false;
         self.menu.red.disabled = false;
+        self.menu.random.disabled = false;
+        self.menu.last.disabled = false;
         self.color = 'rainbow';
         self.log('Current mode: rainbow');
+    };
+
+    this.menu.random.onclick = function() {
+        self.menu.rainbow.disabled = false;
+        self.menu.black.disabled = false;
+        self.menu.red.disabled = false;
+        self.menu.random.disabled = true;
+        self.menu.last.disabled = false;
+        self.color = 'random';
+        self.log('Current mode: random');
+    };
+
+    this.menu.last.onclick = function() {
+        self.menu.rainbow.disabled = false;
+        self.menu.black.disabled = false;
+        self.menu.red.disabled = false;
+        self.menu.random.disabled = false;
+        self.menu.last.disabled = true;
+        self.color = 'last';
+        self.log('Current mode: last');
     };
 
     this.menu.martingale.onclick = function() {
@@ -427,6 +463,13 @@ Automated.prototype.bet = function(amount, color) {
         } else {
             color = this.default_color;
         }
+    } else if (color === 'random') {
+        color = 'red';
+        if (Math.random() > 0.5) {
+            color = 'black';
+        }
+    } else if (color === 'last') {
+        color = this.history[this.history.length - 1];
     }
 
     if (['green', 'red', 'black'].indexOf(color) < 0 || amount > this.balance || amount <= 0) {

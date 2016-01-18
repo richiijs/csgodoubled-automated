@@ -1,5 +1,5 @@
 # CSGODouble.com Automated
-### Userscript that bets for you! Automates betting on [CSGODouble](http://www.csgodouble.com/).
+### Userscript that bets for you! Automates betting on [CSGODouble](http://www.csgodouble.com/) (works with [CSGOPolygon](http://csgopolygon.com/)).
 
 Program interface
 
@@ -102,6 +102,11 @@ Because when you look on the history, you may think it's the safest option to go
 
 
 ## Changelog
+
+1.31:
+
+- Compatible with CSGOPolygon.com
+- Two new modes - bet on random color, bet on last winning color
 
 1.26:
 
