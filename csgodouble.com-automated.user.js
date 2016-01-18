@@ -404,7 +404,7 @@ function Automated() {
             self.log('Reconnecting...');
             connect();
         }
-    }, 2500);
+    }, 5000);
 }
 
 Automated.prototype.updateBalance = function() {
