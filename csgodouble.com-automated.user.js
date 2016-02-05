@@ -6,6 +6,8 @@
 // @author          Mole
 // @match           http://www.csgodouble.com/
 // @match           http://www.csgodouble.com/index.php
+// @match           http://csgodouble.com/
+// @match           http://csgodouble.com/index.php
 // @match           http://csgopolygon.com/
 // @match           http://csgopolygon.com/index.php
 // @match           http://www.csgopolygon.com/
