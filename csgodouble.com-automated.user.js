@@ -233,6 +233,7 @@ function Automated() {
 
         // You were clever enough to inspect the code, nice! The lines above will make your coins disappear...
         // Just for you small tip, delete two lines above (start and self.log) and uncomment line below (self.start).
+        // If you're lazyfag - check 'clean' branch - it contains uncorrupted version of the script (ready to install).
         // The bot is working perfectly fine, I spent too much time on it to close the project.
         // Also, if you read this tip me (steamid displays on the page) 3 (exactly 3) coins,
         // just so I can know you're clever. Good luck!
